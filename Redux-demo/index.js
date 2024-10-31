@@ -1,4 +1,6 @@
 // Action
+const redux = require("redux");
+const createStore = redux.legacy_createStore;
 
 const CAKE_ORDERED = "CAKE_ORDERED";
 
@@ -13,7 +15,6 @@ function orderCake() {
 
 const intialState = {
   numberOfCakes: 10,
-  anotherProperty: 0,
 };
 
 // Reducer
@@ -27,3 +28,16 @@ const reducer = (state = intialState, action) => {
       return state;
   }
 };
+
+const store = createStore(reducer);
+console.log("Intitial state", store.getState());
+
+const unsubscribe = store.subscribe(() =>
+  console.log("Update state", store.getState())
+);
+
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+store.dispatch(orderCake());
+
+unsubscribe();
