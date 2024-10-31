@@ -3,7 +3,7 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Yash</h1>
+      <h1>Learning Redux</h1>
     </>
   );
 }
