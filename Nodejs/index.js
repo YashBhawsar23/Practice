@@ -1,23 +1,15 @@
 const http = require("http");
-const fs = require("fs");
-const url = require("url");
 
-const myServer = http.createServer((req, res) => {
-  const log = `${Date.now()}: ${req.url} New Req Recived\n`;
-  const muUrl = url.parse(req.url);
-  console.log(muUrl);
-  fs.appendFile("log.txt", log, (err, data) => {
-    switch (req.url) {
-      case "/":
-        res.end("It is Home Page");
-        break;
-      case "/about":
-        res.end("Hello I am YAsh Bhawsar");
-        break;
-      default:
-        res.end("404 Page Not Found");
-    }
-  });
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello From Home Page");
 });
 
-myServer.listen(8000, () => console.log("Server Started"));
+app.get("/about", (req, res) => {
+  res.send("Hello From Yash");
+});
+
+app.listen(8000, console.log("Server Started"));
