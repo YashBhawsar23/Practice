@@ -7,4 +7,6 @@ const fs = require("fs");
 // const result = fs.readFileSync("./contacts.txt", "utf-8");
 // console.log(result);
 
-const res = fs.appendFileSync("./test.txt", " Yash Bhawsar");
+// const res = fs.appendFileSync("./test.txt", " Yash Bhawsar");
+
+fs.mkdirSync("app/c/", { recursive: true });
