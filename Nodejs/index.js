@@ -1,9 +1,11 @@
 const express = require("express");
+const fs = require("fs");
 const users = require("./MOCK_DATA.json");
 
 const app = express();
 const PORT = 8000;
 
+// Middleware
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/users", (req, res) => {
@@ -32,6 +34,7 @@ app
   })
   .delete((req, res) => {
     // Delete user with Id
+
     return res.json({ status: "pending" });
   });
 
@@ -40,8 +43,10 @@ app
 app.post("/api/users", (req, res) => {
   // Create new user
   const body = req.body;
-  console.log("Body", body);
-  res.json({ status: "pending" });
+  users.push({ ...body, id: users.length + 1 });
+  fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    res.json({ status: "success", id: users.length });
+  });
 });
 
 // app.patch("/api/users/:id");
@@ -49,3 +54,11 @@ app.post("/api/users", (req, res) => {
 // app.delete("/api/users/:id");
 
 app.listen(PORT, () => console.log(`Server Started At PORT: ${PORT}`));
+
+// {
+//     first_name: body.first_name,
+//     last_name: body.last_name,
+//     email: body.email,
+//     gender: body.gender,
+//     job_title: body.job_title,
+//   }
