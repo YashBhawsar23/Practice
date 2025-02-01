@@ -29,7 +29,8 @@ router.get("/", async (req, res) => {
 // Get A Single User
 router.get("/:id", async (req, res) => {
   try {
-    const user = await user.findById(req.params.id);
+    const id = Number(req.params.id);
+    const user = await user.findById(id);
     if (!user) return res.status(404).json({ message: "User not found" });
     res.status(200).json(user);
   } catch (error) {
