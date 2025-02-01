@@ -10,11 +10,12 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   console.log("Hello From middleware 1");
-
+  req.myName = "Yash Bhawsae";
   next();
 });
+
 app.use((req, res, next) => {
-  console.log("Hello From middleware 2");
+  console.log("Hello From middleware 2", req.myName);
   res.end("Hey");
 });
 
