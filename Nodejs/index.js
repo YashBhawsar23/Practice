@@ -14,11 +14,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req, res, next) => {
-  console.log("Hello From middleware 2", req.myName);
-  res.end("Hey");
-});
-
 app.get("/users", (req, res) => {
   const html = `
       <ul>
@@ -28,6 +23,12 @@ app.get("/users", (req, res) => {
   res.send(html);
 });
 
+app.get("/api/users", (req, res) => {
+  return res.json(users);
+});
+app.get("/api/users", (req, res) => {
+  return res.json(users);
+});
 app.get("/api/users", (req, res) => {
   return res.json(users);
 });
